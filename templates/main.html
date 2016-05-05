@@ -1,0 +1,86 @@
+{%extends "index.html"%}
+
+
+{%block body%}
+<!-- Page Content -->
+    <div class="container" ng-controller="DocumentController" >
+         {%raw%}
+        <div class="row">
+
+            <div class="col-md-3" style="background-color:#237816;">
+                <p class="lead" color="white">Search for documents</p> 
+                <hr>
+                <div class="list-group">
+                <form role="form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" ng-model="search" placeholder="Search here..."/>
+                  </div>
+                </form>
+                </div>
+
+               <!--  <p>Server Search</p>
+                <div class="list-group">
+                <form role="form" name="search_form" id="search_form"  >
+                   <div class="form-group">
+                  <label for="sel1">Filter:</label>
+                  <select class="form-control" id="filter" name="filter" ng-model="filter">
+                    <option>docname</option>
+                    <option>author</option>
+                    <option>publisher</option>
+                    <option>tags</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  
+                  <input type="text" class="form-control" id="usr" name="find" ng-model="find">
+                </div>
+
+                <div class="form-group">
+                  
+                  <button >Search</button>
+                </div>
+                </form>
+                </div> -->
+
+
+            </div>
+
+            <div class="col-md-9">
+
+               
+                <div class="thumbnail-wrapper" dir-paginate="doc in docs.data | filter:search | itemsPerPage:3">
+                    
+                <div class="thumbnail"> 
+                    <img class="pull-left" src="/image/{{doc.image}}" style="width:7.5em;height:7.5em;margin-left:15px;"></img>               
+                    <div class="caption-full">
+                        <button class="pull-right" ng-click="delete($index,doc.id)" style="margin-top:7.5px;">X</button>&nbsp;
+                        <h4 class="pull-right"><a href="/update/{{doc.id}}" >Edit&nbsp;&nbsp;</a></h4>&nbsp;
+                        <h4 class="pull-right"><a href="/uploads/{{doc.filename}}" target="_new">View&nbsp;&nbsp;</a></h4>
+                        <h4><a href="#">Document Name</a> :- {{doc.name}}
+                        </h4>
+                        <p><strong>Author:</strong>{{doc.author}} &nbsp;&nbsp;&nbsp;<strong>Publication:</strong>{{doc.publisher}} </p>
+                        <div class="pull-right">
+                        <p>Size: {{doc.size}}</p>
+                        </div>
+                        <div class="ratings">
+                                                
+                    </div>  
+                        <p><strong>Tags:</strong>{{doc.tags}}</p>                     
+                    </div>                    
+                </div>
+                
+                </div>
+
+    <div>
+        <dir-pagination-controls template-url="/page">
+        </dir-pagination-controls>
+    </div>  
+
+            </div>
+
+        </div>
+        {%endraw%} 
+    </div>
+    <!-- /.container -->
+
+{%endblock%}
